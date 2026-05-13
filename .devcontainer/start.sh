@@ -92,7 +92,7 @@ echo "--------------------------------------------------"
 echo "  🌐  GitHub Domain"
 echo "--------------------------------------------------"
 echo ""
-echo "vless://${UUID}@${SNI}:443?encryption=none&security=tls&sni=${SNI}&insecure=0&allowInsecure=0&type=ws&path=%2Flive-chat#ghtun-ws"
+echo "vless://${UUID}@${SNI}:443?encryption=none&security=tls&sni=${SNI}&insecure=0&allowInsecure=0&type=ws&path=%2Flive-chat#%40Subioir%20DarkForce%26LifeisBrown%20%20$"
 echo ""
 
 # IP configs
@@ -103,7 +103,7 @@ echo ""
 for i in "${!IPS[@]}"; do
   IP="${IPS[$i]}"
   LABEL="${LABELS[$i]}"
-  REMARK="%40Subioir%20DarkForce%26LifeisBrown%20%20${LABEL}%20%7C%20${SNI}"
+  REMARK="%40Subioir%20DarkForce%26LifeisBrown%20%20${LABEL}"
   echo "  🔹 ${LABEL} — ${IP}"
   echo "vless://${UUID}@${IP}:443?encryption=none&security=tls&sni=${SNI}&insecure=0&allowInsecure=0&type=ws&path=%2Flive-chat#${REMARK}"
   echo ""
