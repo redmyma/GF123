@@ -73,8 +73,9 @@ fi
 # ── 6. Date tag ───────────────────────────────
 DATE_TAG=$(date +%Y%m%d)
 
-# ── 7. IP list ────────────────────────────────
-IPS=("50.7.87.4" "50.7.87.2" "142.54.178.211" "50.7.87.5" "204.12.196.34")
+# ── 7. IP list + labels ──────────────────────
+IPS=("63.141.252.203" "142.54.178.211" "50.7.87.2" "204.12.196.34" "50.7.87.5" "63.141.252.203" "50.7.87.4")
+LABELS=("DE1" "US1" "DE2" "US2" "DE3" "US3" "DE4")
 
 # ── 8. Print output ───────────────────────────
 echo ""
@@ -99,9 +100,12 @@ echo "--------------------------------------------------"
 echo "  📡  Direct IP Configs (Lower Ping)"
 echo "--------------------------------------------------"
 echo ""
-for IP in "${IPS[@]}"; do
-  echo "  🔹 ${IP}"
-  echo "vless://${UUID}@${IP}:443?encryption=none&security=tls&sni=${SNI}&insecure=0&allowInsecure=0&type=ws&path=%2Flive-chat#ghtun-ws"
+for i in "${!IPS[@]}"; do
+  IP="${IPS[$i]}"
+  LABEL="${LABELS[$i]}"
+  REMARK="%40Subioir%20DarkForce%26LifeisBrown%20%20${LABEL}%20%7C%20${SNI}"
+  echo "  🔹 ${LABEL} — ${IP}"
+  echo "vless://${UUID}@${IP}:443?encryption=none&security=tls&sni=${SNI}&insecure=0&allowInsecure=0&type=ws&path=%2Flive-chat#${REMARK}"
   echo ""
 done
 
