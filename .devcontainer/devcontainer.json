@@ -12,7 +12,7 @@
       "version": "latest"
     }
   },
-  "postAttachCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && sudo /usr/local/bin/xray -c /etc/config.json &>/tmp/xray.log & /usr/local/bin/print-configs.sh",
+  "postAttachCommand": "bash -c 'echo \"[G-Tunnel] Waiting for environment to be ready...\"; until gh codespace ports visibility 443:public -c $CODESPACE_NAME >/dev/null 2>&1; do sleep 5; done; if ! ps aux | grep -q \"[x]ray\"; then sudo /usr/local/bin/xray -c /etc/config.json &>/tmp/xray.log & sleep 2; fi; /usr/local/bin/print-configs.sh'",
   "portsAttributes": {
     "443": {
       "label": "xray-ws",
