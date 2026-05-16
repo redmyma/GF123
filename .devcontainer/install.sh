@@ -23,7 +23,7 @@ echo "🔑 Generated UUID: $UUID"
 # Patch config.json with the new UUID
 sed -i "s/__UUID__/$UUID/" /etc/config.json
 
-# Write startup script that prints all VLESS configs on attach
+# Write startup script that prints all VLESS configs
 cat > /usr/local/bin/print-configs.sh << SCRIPT
 #!/bin/sh
 UUID=\$(grep -o '"id": *"[^"]*"' /etc/config.json | grep -o '[0-9a-f-]\{36\}')
@@ -62,5 +62,5 @@ SCRIPT
 
 chmod +x /usr/local/bin/print-configs.sh
 
-# Add to bash startup so it prints on every attach
-echo '/usr/local/bin/print-configs.sh' >> /etc/bash.bashrc
+# Print configs right now (only once at the end of installation)
+/usr/local/bin/print-configs.sh
